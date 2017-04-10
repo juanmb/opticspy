@@ -1,16 +1,5 @@
 
-#opticspy testing version porting to Python 3.0
-
-## To test
-* mkdir /tmp/github/
-* cd /tmp/github/
-* git clone https://github.com/Diti24/opticspy.git
-* sys.path.append('/tmp/github/')
-* sys.path.append('/tmp/github/opticspy')
-* from opticspy.ray_tracing import *
-The basics is working...
-New_Lens.add_surface(number=11,radius=177.41176,thickness=7,glass='N-SK16_schott')
-gives an error to be investigated...
+#opticspy
 
 Opticspy is a python module for optics application. I want this for a long time. One reason is I know both optics and python, so why no develop some optics tools? The second reason is that there is not much opensource, easy-to-use optics program module(matlab has great fuctions but do not specify to optics application). I want this could be developed in to a core for a future web application for optics.
 

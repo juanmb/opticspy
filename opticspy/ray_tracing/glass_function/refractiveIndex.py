@@ -16,12 +16,12 @@
 #
 #   Copyright 2014-2015 Pavel Dmitriev <pavel.a.dmitriev@gmail.com>
 
-
+from pkg_resources import resource_filename
 import os
 import yaml
 import sys
 import argparse
-import numpy 
+import numpy
 
 
 class RefractiveIndex:
@@ -58,25 +58,21 @@ class RefractiveIndex:
         #         book.pages = pages
 
     def getMaterialFilename(self, shelf, book, page):
+        """
+        :param shelf:
+        :param book:
+        :param page:
+        :return:
+        """
         cwd = os.getcwd()
-        rootdir = cwd + "/opticspy/ray_tracing/glass_database/"
-        glass_catalog = book
+        rootdir = resource_filename('opticspy', 'ray_tracing/glass_database/')
         filename = page + '.yml'
         for root, subFolders, files in os.walk(rootdir):
-            if root.endswith(glass_catalog):
-                break
-        for f in files:
-            if f == filename:
-                filepath = os.path.join(self.referencePath,root,filename)
-                break
-        return filepath
-        # """
-
-        # :param shelf:
-        # :param book:
-        # :param page:
-        # :return:
-        # """
+            if root.endswith(book):
+                for f in files:
+                    if f == filename:
+                        return os.path.join(self.referencePath,root,filename)
+        raise OSError("Material file %s not found" % filename)
 
         # filename = os.path.join(self.referencePath,shelf,book,page) + '.yml'
         # print filename
